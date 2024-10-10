@@ -1,15 +1,15 @@
 ##
 
 download.file(url = "https://zenodo.org/records/3964745/files/03_CAMELS_BR_streamflow_mm_selected_catchments.zip?download=1",
-              destfile = "../Downloads/03_CAMELS_BR_streamflow_mm_selected_catchments.zip")
+              destfile = "./data/03_CAMELS_BR_streamflow_mm_selected_catchments.zip")
 
-file.exists("../Downloads/03_CAMELS_BR_streamflow_mm_selected_catchments.zip")
+file.exists("./data/03_CAMELS_BR_streamflow_mm_selected_catchments.zip")
 
-dir.create(path = "../Desktop/camel_data")
-unzip(zipfile = "../Downloads/03_CAMELS_BR_streamflow_mm_selected_catchments.zip",
-      exdir = "../Desktop/camel_data")
+dir.create(path = "./data/camel_data")
+unzip(zipfile = "./data/03_CAMELS_BR_streamflow_mm_selected_catchments.zip",
+      exdir = "./data/camel_data")
 
-fls <- list.files(path = "../Desktop/camel_data", 
+fls <- list.files(path = "./data/camel_data/03_CAMELS_BR_streamflow_mm_selected_catchments/", 
                   full.names = TRUE,
                   recursive = TRUE,
                   pattern = ".txt")
@@ -44,6 +44,6 @@ dta_all$id <- as.factor(x = dta_all$id)
 dta_all <- na.omit(object = dta_all)
 
 saveRDS(object = dta_all,
-        file = "../Desktop/camel_br.rds")
+        file = "./data/camel_br.rds")
 
-test <- readRDS(file = "../Desktop/camel_br.rds")
+test <- readRDS(file = "./data/camel_br.rds")
