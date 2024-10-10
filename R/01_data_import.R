@@ -45,4 +45,3 @@ saveRDS(object = dta_all,
         file = "./data/camel_br.rds")
 
 test <- readRDS(file = "./data/camel_br.rds")
-
