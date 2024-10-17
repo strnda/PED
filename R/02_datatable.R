@@ -30,9 +30,12 @@ dta <- as.data.table(x = dta)
 
 dta
 
+## making wide format data
 dta_wide <- dcast(data = dta,
                   formula = date ~ id,
                   value.var = "streamflow_mm")
+
+## benchmarking wide nad long data formats
 system.time({
   write.fst(x = dta,
             path = "./data/dta_long.fst")
