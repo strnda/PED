@@ -5,7 +5,7 @@
 
 Collection of scripts and data for the **PED** class
 
-**Valid (2024-10-17 11:12:05.792884)
+**Valid (2024-10-17)
 [Datacamp](https://www.datacamp.com/groups/shared_links/ccc4fb8cd007ffd95abe048c5325c5f2138f02ca0c13e1aa16ad6c077e532fdd)
 invite link**
 
@@ -45,7 +45,7 @@ Or manualy download the archive… ![](figs/download.png)
 git clone https://github.com/strnda/PED.git
 ```
 
-Or clone it manually vie Rstudio ide interface: navigate to “New
+Or clone it manually via Rstudio ide interface: navigate to “New
 Project” \> “Version Control” \> “git” and paste the repo URL  
 ![](figs/git_repo_clone.png)
 
@@ -53,5 +53,5 @@ Project” \> “Version Control” \> “git” and paste the repo URL
 
 - In the **R** folder you can find important scripts named in logical
   order (1 - data import, 2 - basic data analysis, etc…)  
-- **cheatshees** folder contains cheatsheets that can be usefull in your
+- **cheatshees** folder contains cheat sheets that can be useful in your
   future endeavors
