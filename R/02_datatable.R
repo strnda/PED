@@ -1,4 +1,4 @@
-########
+##installing packages
 lop <- c("data.table", "fst")
 
 to_instal <- lop[which(x = !(lop %in% installed.packages()[,"Package"]))]
@@ -13,7 +13,7 @@ temp <- lapply(X = lop,
                character.only = T)
 rm(temp, lop, to_instal)
 
-########
+#########
 
 dta <- readRDS(file = "./data/camel_br.rds")
 
