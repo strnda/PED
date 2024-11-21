@@ -13,7 +13,7 @@ header-includes:
 
 This document demonstrates how to use various R packages to add interactivity and utilize different programming languages within RStudio. You'll learn about popular packages like `leaflet` and `plotly`, which enable interactive data visualizations, as well as how to incorporate languages like Python, C++, and Bash directly into RMarkdown.
 
-For source code see [github page](https://github.com/strnda/PED/blob/main/R/04_markdown.Rmd).
+For source code see [github page](https://github.com/strnda/PED/blob/main/R/05_markdown.Rmd).
 
 # Package Setup
 
