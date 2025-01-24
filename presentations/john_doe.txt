@@ -1,0 +1,5 @@
+https://fzp-czu.shinyapps.io/cosmos_shiny_app_dev/
+
+sharing link to a cool app allowing you to generate syntethic timeseries
+best
+JD
