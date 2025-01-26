@@ -1,0 +1,16 @@
+Name: Ali Awais
+
+Shiny App Link: http://127.0.0.1:3111/
+
+Project Description:
+This project involves the creation of a Shiny app in R using the Nile River dataset. The app serves as an interactive tool for analyzing and visualizing the flow of the Nile River over time. Its significance lies in demonstrating how interactive visualizations can provide deeper insights into different aspects of the dataset.
+
+Key Features:
+- Time Series Analysis: A dynamic plot allows users to explore the annual trends in river flow across a selectable time range.
+- Summary Statistics: Users can view key metrics such as mean, median, standard deviation, and more, for the selected range.
+- Yearly Comparisons: Visualizations compare the river flow across decades, providing insights into patterns and anomalies over time.
+- Flow Distribution: A histogram visualizes the distribution of river flow to identify data characteristics like skewness or clustering.
+- Anomaly Detection: The app identifies and highlights outliers in the dataset based on statistical thresholds.
+- Forecasting: Users can forecast future river flow using ARIMA modeling, with adjustable forecast durations.
+
+The app showcases the power of R and Shiny in building interactive tools for data analysis and visualization. It leverages packages such as `shiny`, `ggplot2`, `dplyr`, and `forecast` to deliver an intuitive and comprehensive user experience.
