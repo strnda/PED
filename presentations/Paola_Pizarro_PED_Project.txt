@@ -1,0 +1,14 @@
+Presentation of environmental data project
+
+Submitted by Paola Andrea Pizarro Guzmán 
+LINK TO THE SHINY APP
+HTTPS://ZP7ZTU-PAOLA0ANDREA.SHINYAPPS.IO/PED_APP/
+This Shiny app analyzes precipitation and temperature data from Cali, a tropical city in Colombia, covering the period from 1998 to 2013. It was initially thought to  helps users identify the best planting periods for crops by exploring key climate variables and their seasonal patterns. Given Cali's tropical climate, temperature fluctuations can vary very little throughout the year, which impacts agricultural decisions.
+The app focuses on the following variables:
+* Precipitation: Shows rainfall amounts, helping users identify wet and dry periods for optimal planting and harvest times.
+* Mean Temperature (tmean): Represents the average daily temperature, guiding users in avoiding temperature extremes that could affect crop growth.
+* Minimum Temperature (tmin): The lowest daily temperature, useful for assessing frost risks and planning for frost-sensitive crops.
+* Maximum Temperature (tmax): The highest daily temperature, important for understanding heat stress risks for crops.
+The seasonality analysis aggregates data by month to show the seasonal variability of each variable. This allows users to identify the months with the most favorable conditions for sowing, based on temperature and precipitation trends.
+Overall, this app could help farmers in Cali make data-driven decisions about when to plant, ensuring crops thrive under the best climatic conditions, as well as it could be use for hydrological resources management. 
+
