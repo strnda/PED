@@ -1,0 +1,31 @@
+Name: Abdulrasheed Ali Musa
+
+Shiny App Link: http://rashyd.shinyapps.io/HadejiaRiverBasin_app
+CSV file (discharge is in mm/day) : https://github.com/Rashydmusa/Hadejia-discharge/blob/main/discharge_data.csv
+
+Project Description:
+This project is an app designed for visualizing and analysing river flow discharge data of a station within the hadejia river basin. 
+
+App interface includes Left Panel(user input section) and Main Panel (data display and analysis section) 
+
+Left Panel consist of the following: 
+-File Upload Section: Allows users to upload a CSV file.
+-Data Column Selection: Dropdown menus to select the date column, discharge column and "Load Data" button to process the selected data.
+-Year Range Selector:A slider to filter data by year (1963 to 2006 is selected)
+-Forecast Input: A text box for specifying the number of years for forecasting.
+-Download Button: Allows users to download report.
+
+Main Panel consist of following navigation tabs:
+-Data table: displays dataset loaded.
+-Time Series Plot: Provides a time-series visualization of river discharge over time which helps identify trends, seasonal patterns, and anomalies.
+-Summary Statistics: Displays key statistical metrics such as mean, median, standard deviation etc. which is useful for understanding the distribution of discharge values.
+-Monthly Trends: Shows how river discharge varies on a month-to-month basis across different years and helps analyze seasonal fluctuations and water availability.
+-Yearly Comparison: Compares discharge trends across different years which is useful for detecting long-term changes in river flow.
+-Histogram: A frequency distribution chart of discharge values which helps visualize the most common discharge levels and assess data skewness.
+-Peak Detection: Identifies and highlights extreme discharge values (flood peaks, droughts) which is useful for flood risk analysis and hydrological studies.
+-Anomalies: Detects outliers or irregularities in the discharge data.
+-Heatmap:Displays discharge values using a color gradient to highlight patterns over time which is useful for quickly spotting high and low discharge periods.
+-Flow Duration Curve: A probability-based curve showing how often different discharge levels occur.
+-Forecast:Predicts future river discharge based on historical trends.
+
+In short, the app helps users analyze, visualize, and forecast river discharge trends for better decision-making in water resource management.
