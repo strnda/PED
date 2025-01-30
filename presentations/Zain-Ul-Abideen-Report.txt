@@ -1,0 +1,35 @@
+
+New York Air Quality Measurements
+Using Shiny App  
+ 
+Presentation of Environmental Data
+
+FACULTY OF ENVIRONMENTAL SCIENCES 
+ 
+ 
+SUBMITTED TO: Ing. Filip Strnad 
+SUBMITTED BY: Zain Ul Abideen
+
+
+Short Description:
+This Shiny app, Air Quality Analysis, provides an interactive platform to explore and analyze the air quality dataset. Users can select a variable (Ozone, Solar, Wind, or Temp) and filter data by month range to view:
+Here is the link of my shiny app: https://zainulabideen.shinyapps.io/air_quality_analysis/
+Time Series Trends: Visualize daily patterns across months.
+Summary Statistics: Calculate key metrics like mean, median, and standard deviation.
+Variable Distribution: Display histograms with adjustable bin widths.
+Monthly Comparison: Compare variable levels across months using boxplots.
+The app also includes a download feature to export the filtered dataset for offline analysis.
+Conclusion:
+• The air quality analysis project provides valuable insights into the distribution and variation of ozone levels over time, highlighting seasonal trends and specific patterns.
+• High ozone concentrations during summer pose potential risks to human health (e.g., respiratory issues) and the environment (e.g., vegetation damage).
+• The presence of outliers reflects rare but significant events of elevated ozone, emphasizing the need for proactive monitoring and intervention.
+• The project demonstrates the critical role of data visualization and statistical analysis in understanding environmental trends. By identifying seasonal peaks and outliers in ozone levels, this analysis serves as a foundation for addressing air quality challenges and protecting public health and the environment. 
+
+ 	
+
+
+
+
+
+
+
