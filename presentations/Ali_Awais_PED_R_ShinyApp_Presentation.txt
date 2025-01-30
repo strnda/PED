@@ -1,6 +1,6 @@
 Name: Ali Awais
 
-Shiny App Link: http://127.0.0.1:3111/
+Shiny app Link: https://aliawais.shinyapps.io/aliawais/
 
 Project Description:
 This project involves the creation of a Shiny app in R using the Nile River dataset. The app serves as an interactive tool for analyzing and visualizing the flow of the Nile River over time. Its significance lies in demonstrating how interactive visualizations can provide deeper insights into different aspects of the dataset.
