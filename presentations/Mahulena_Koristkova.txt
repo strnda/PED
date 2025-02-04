@@ -1,0 +1,18 @@
+Jméno: Mahulena Kořistková
+
+App: https://trynnie.shinyapps.io/zverina/
+
+Popis:
+Aplikace umožňuje vizualizaci dat pořízených v rámci měření RMS (Radiační monitorovací sítě). 
+Úkolem RMS je plošná kontrola aktivity vybraných radionuklidů v komoditách stanovených SÚJB. 
+Zde jsou jako příklad prezentována data spadající do kategorie Potravní řetězec - Zvěřina,
+která se měří především s ohledem na potenciální obsah Cs-137 v houbách, které tvoří podstatnou
+složku její stravy.
+Každoročně jsou vyhodnocovány současné aktivity s ohledem na historický vývoj, s cílem posoudit,
+zda dochází ke změně v dlouhodobém trendu aktivit. K tomu mohou sloužit kvantilové grafy (boxploty),
+případně časové řady.
+Součástí této aplikace jsou fotografická vyobrazení konkrétních zvířat, která slouží jako univerzální
+slovníček, neb anglická označení konkrétních druhů zvěřiny nemusí mít všichni zažité.
+
+Aplikace umožňuje jednoduchou filtraci pomocí časového ohraničení a možnost zobrazit pouze hodnoty
+spadající pod hladinu významnosti (MVA).
