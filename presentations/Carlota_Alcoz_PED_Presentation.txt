@@ -1,0 +1,11 @@
+Presentation of Environmental Data project by Carlota Alcoz Meroño
+
+http://rpubs.com/carlota_alcoz/1268656
+
+Description: 
+Title: Study of biodiversity progression through Living Planet Index
+This presentation explores biodiversity trends through the Living Planet Index, utilizing data from "Our World in Data". 
+It includes a general explanation of what the Living Planet Index is, as well as an interpretation of the data and its implications. The text of the presentation is complemented with explanatory graphs, tables and images, some of them interactive.
+I have made use of several R packages ("data.table", "fst", "ggplot2", "dplyr", "tidyr", "knitr", "plotly","DT") for the development of multiple types of graphs such as those explained in the lessons.
+
+
