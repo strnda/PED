@@ -1,0 +1,7 @@
+Jméno: Jan Vacek
+
+Sodt je vymyšlený koeficient který má pomoci zmapovat poměr vysokých odtoků/srážek vůči celoročnímu odtoku.
+
+Jako vstupní data jsem použil časovou řadu průměrných denních průtoků. Většina dat byla v rozsahu hydrologyckýcl let 1981-2023. Z těchto dat jsem v programovací jazyku R vypočítal koeficienty Sodt. Postup je výpočtu jednotlivých koeficientů je zobrazen v aplikaci. Csv soubory s tímto koeficientem slouží jako vstupní data do této aplikace.
+
+App: https://crack.shinyapps.io/sodt_web_app/
