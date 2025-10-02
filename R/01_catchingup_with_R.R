@@ -89,6 +89,7 @@ dta <- read.csv(file = paste0(pth, "matrix.csv"))
 
 ?distribution
 
+pth <- "C:/Users/strnadf/Desktop/"
 dst <- c("norm", "lnorm", "cauchy", "exp")
 n <- 1000
 
