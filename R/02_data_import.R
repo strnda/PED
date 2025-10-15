@@ -1,12 +1,18 @@
+# Task: Downloading data from a website and importing it into R
+# Created Date: October 2025
+
+
 pth <- "~/Desktop/PED/"
 
-file_name <- "04_CAMELS_BR_streamflow_simulated.zip"
+file_name <- "04_CAMELS_BR_streamflow_simulated.zip" 
 
 dir.create(path = paste0(pth, "data/"), 
            recursive = TRUE)
 
+## Adding "?download=1" to the URL creates the download link instead of simply opening the link
+## "?download=1" is not a generic method, can be different for different websites
 download.file(url = paste0("https://zenodo.org/records/3964745/files/", 
-                           file_name,"?download=1"),
+                           file_name,"?download=1"), 
               destfile = paste0(pth, "data/", file_name))
 
 if (file.exists(paste0(pth, "data/", file_name))) {
@@ -43,14 +49,20 @@ dta_all <- lapply(
                         format = "%Y-%m-%d")
     
     aux <- strsplit(x = i, split = "/")[[1]]
+    
+    # The file name has this pattern: 13880000_simulated_streamflow.txt
+    # ID_simulated_streamflow.txt
+    # split by "_" and get the first element will give us the ID
     dta$id <- as.factor(x = strsplit(x = aux[length(aux)], split = "_")[[1]][1])
     
+    # remove "year", "month", "day" column because we already have "date" column
     dta_out <- dta[, which(x = !(names(x = dta) %in% c("year", "month", "day")))]
     
     return(dta_out)
   }
 )
 
+# data import has been finished, code below just for testing the data
 test <- dta_all[[sample(x = seq_along(along.with = dta_all),
                         size = 1)]]
 
