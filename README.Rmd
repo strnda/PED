@@ -13,13 +13,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Presentation of Environmeltal Data
+# Presentation of Environmental Data
 
 Collection of scripts and data for the **PED** class
 
 **Valid (`r as.Date(x = Sys.time())`) [Datacamp](https://www.datacamp.com/groups/shared_links/ccc4fb8cd007ffd95abe048c5325c5f2138f02ca0c13e1aa16ad6c077e532fdd) invite link**
 
-## How to get the content of tis repo to your local machine
+## How to get the content of this repo to your local machine
 
 - without git:
 ```{r, eval = FALSE}
@@ -61,4 +61,4 @@ Or clone it manually via Rstudio ide interface: navigate to "New Project" > "Ver
 # Content of the repository
 
 - In the **R** folder you can find important scripts named in logical order (1 - data import, 2 - basic data analysis, etc...)    
-- **cheatshees** folder contains cheat sheets that can be useful in your future endeavors
+- **cheatsheets** folder contains cheat sheets that can be useful in your future endeavors
