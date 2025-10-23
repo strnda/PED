@@ -34,7 +34,6 @@ fls <- list.files(path = paste0(pth, "data/camel_data/"),
 dta_all <- lapply(
   X = fls, 
   FUN = function(i) { 
-    
     # i <- fls[1]
     # read the file into  data table, changes "nan" into NA (missing value)
     dta <- read.table(file = i, 
