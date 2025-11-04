@@ -22,10 +22,27 @@ fls <- sapply(
 
 fls <- as.vector(x = fls)
 
-dta_all <- lapply(X = paste0(url,
-                             fls[1:10],
-                             ".csv"), 
-                  FUN = read.csv)
+dta_all <- lapply(
+  X = paste0(url,
+             fls,
+             ".csv"), 
+  FUN = function(i) {
+    
+    e <- try(expr = read.csv(file = i),
+             silent = TRUE)
+    
+    if (inherits(x = e,
+                 what = "try-error")) {
+      
+      out <- NULL
+    } else {
+      
+      out <- e
+    }
+    
+    return(out)
+  }
+)
 
 dta_all <- do.call(what = rbind,
                    args = dta_all)
@@ -54,7 +71,7 @@ desc_stat <- function(x, na.rm = TRUE) {
              probs = c(.05, .1, .15, .25, .5, .75, .85, .90, .95)))
 }
 
-desc_stat(x = x)
+desc_stat(x = dta_sub$VALUE)
 
 dta_l <- split(x = dta_sub,
                f = dta_sub$STATION)
@@ -68,9 +85,13 @@ stat <- sapply(
 
 View(stat)
 
-install.packages("data.table")
+if(!require(data.table)) {
+  
+  install.packages("data.table")
+  
+  library(data.table)
+}
 
-library(data.table)
 
 class(dta_all)
 str(object = dta_all)
