@@ -97,6 +97,13 @@ ggplot(data = dta_sub,
   theme_bw()
 
 ggplot(data = dta_sub,
+       mapping = aes(x = as.factor(x = MONTH),
+                     y = VALUE,
+                     fill = STATION)) +
+  geom_boxplot() +
+  theme_bw()
+
+ggplot(data = dta_sub,
        mapping = aes(x = VALUE,
                      y = after_stat(x = density))) +
   geom_histogram(binwidth = 1,
