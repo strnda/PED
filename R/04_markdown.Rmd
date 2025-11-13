@@ -1,0 +1,211 @@
+---
+title: "Interactive R and more..."
+output: 
+  rmdformats::material
+editor_options: 
+  chunk_output_type: console
+header-includes:
+   - \usepackage{amssymb}
+   - \usepackage{amsmath}
+---
+
+# Interactive R with RMarkdown
+
+This document demonstrates how to use various R packages to add interactivity and utilize different programming languages within RStudio. You'll learn about popular packages like `leaflet` and `plotly`, which enable interactive data visualizations, as well as how to incorporate languages like Python, C++, and Bash directly into RMarkdown.
+
+For source code see [github page](https://github.com/strnda/PED/blob/main/R/05_markdown.Rmd).
+
+# Package Setup
+
+```{r, message = FALSE, warning = FALSE, cache = FALSE}
+lop <- c("reticulate", "Rcpp", "leaflet", "ggplot2", "plotly", "visNetwork", "DT")
+
+to_instal <- lop[which(x = !lop %in% installed.packages()[,"Package"])]
+
+if(length(x = to_instal) != 0) {
+  install.packages(pkgs = to_instal)
+}
+
+aux <- lapply(X = lop, FUN = library, character.only = TRUE)
+
+rm(list = c("lop", "to_instal", "aux"))
+gc()
+```
+
+This code block installs and loads a set of essential packages used in this document. Here’s a quick overview of each:
+
+- **`reticulate`**: Integrates Python into R, allowing you to run Python code in R scripts.
+- **`Rcpp`**: Links R with C++ code, enabling high-performance computation.
+- **`leaflet`**: Used for creating interactive maps.
+- **`ggplot2`**: A powerful data visualization package.
+- **`plotly`**: Provides interactive plots and works seamlessly with `ggplot2`.
+- **`visNetwork`**: Allows creation of network visualizations.
+- **`DT`**: Displays data tables with interactive features.
+
+# Integrating Other Languages in RStudio {.tabset}
+
+RStudio supports multi-language workflows, letting you run code in Python, C++, and Bash within an RMarkdown file.
+
+## Python
+
+Using the `reticulate` package, we can run Python code in RStudio.
+
+### Example: Using Python Variables in R
+
+In this example, we create a variable in Python and access it from R.
+
+```{python}
+x = .1 + .1 + .1
+print(x)
+```
+
+```{r}
+py$x
+```
+
+### Example: Using R Variables in Python
+
+Similarly, we can define a variable in R and access it in Python.
+
+```{r}
+x <- rnorm(n = 10)
+```
+
+```{python}
+print(r.x)
+```
+
+## C++
+
+With the `Rcpp` package, we can write C++ code directly in RMarkdown. Here’s a simple example function written in C++ to double each element of a vector.
+
+```{Rcpp}
+#include <Rcpp.h>
+
+//[[Rcpp::export]]
+Rcpp::IntegerVector add_number(Rcpp::IntegerVector x) {
+  return x + x;
+}
+```
+
+We can call this function in R:
+
+```{r}
+add_number(c(2, 184))
+```
+
+## Bash
+
+Bash commands can be executed in RMarkdown, making it easy to interact with the command line. For more Bash examples, see [this link](https://github.com/strnda/tools/blob/master/txt/linux).
+
+```{bash}
+echo "Hello Bash!"
+ls -la
+```
+
+# Interactive HTML Widgets {.tabset}
+
+HTML widgets in R enable interactive data visualizations directly within RMarkdown.
+
+## Leaflet: Interactive Maps
+
+`leaflet` is a powerful package for creating interactive maps in R. In this example, we use earthquake data (`quakes`) and map the locations with markers.
+
+```{r}
+data(quakes)
+head(quakes)
+
+leaflet(data = quakes[1:20,]) %>%
+  addTiles() %>%
+  addMarkers(lng = ~long, lat = ~lat, popup = ~as.character(x = mag), label = ~as.character(x = mag))
+```
+
+## Plotly: Interactive Graphs {.tabset}
+
+The `plotly` package allows you to create interactive plots. It integrates well with `ggplot2`, allowing static `ggplot` objects to be made interactive.
+
+### ggplot2 with Plotly
+
+Here’s a bar plot of diamond cuts by clarity, enhanced with `plotly`.
+
+```{r}
+p <- ggplot(data = diamonds, mapping = aes(x = cut, fill = clarity)) +
+            geom_bar(position = "dodge")
+
+ggplotly(p = p)
+```
+
+### Pure Plotly
+
+You can also use `plotly` directly without `ggplot2` for custom visualizations.
+
+```{r}
+plot_ly(z = ~volcano, type = "heatmap")
+
+plot_ly(z = ~volcano, type = "surface")
+```
+
+## visNetwork: Network Visualizations
+
+The `visNetwork` package enables interactive network visualization in R.
+
+```{r}
+nodes <- data.frame(id = 1:6, title = paste("node", 1:6), shape = c("dot", "square"), size = 10:15, color = c("blue", "red"))
+edges <- data.frame(from = 1:5, to = c(5, 4, 6, 3, 3))
+head(x = nodes)
+
+visNetwork(nodes = nodes, edges = edges)
+```
+
+The following example demonstrates customization with different node shapes, colors, and interactive options:
+
+```{r}
+nodes <- data.frame(id = 1:10, 
+                    label = paste("Node", 1:10),
+                    group = c("GrA", "GrB"),
+                    value = 1:10, 
+                    shape = c("square", "triangle", "box", "circle", "dot", "star",
+                              "ellipse", "database", "text", "diamond"),
+                    title = paste0("<p><b>", 1:10,"</b><br>Node !</p>"), 
+                    color = c("darkred", "grey", "orange", "darkblue", "purple"),
+                    shadow = c(FALSE, TRUE, FALSE, TRUE, TRUE)) 
+
+edges <- data.frame(from = sample(1:10,8), to = sample(1:10, 8),
+                    label = paste("Edge", 1:8), 
+                    length = c(100,500), 
+                    arrows = c("to", "from", "middle", "middle;to"),
+                    dashes = c(TRUE, FALSE),  
+                    title = paste("Edge", 1:8), 
+                    smooth = c(FALSE, TRUE),  
+                    shadow = c(FALSE, TRUE, FALSE, TRUE)) 
+
+visNetwork(nodes = nodes, edges = edges) %>%
+  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE)
+```
+
+## DataTables: Interactive Data Tables
+
+The `DT` package renders interactive tables. Here, we display the `iris` dataset in a searchable and sortable format.
+
+```{r}
+datatable(data = iris, options = list(pageLength = 10), class = "cell-border stripe", editable = "cell")
+```
+
+# \( \LaTeX \): Mathematical Expressions
+
+In RMarkdown, you can use LaTeX to format mathematical expressions. Here’s the formula for the three-parameter Generalized Pareto distribution (GPD):
+
+\[
+f(x) = \alpha^{-1}e^{-(1 - \kappa)y}, \quad y = 
+\begin{cases} 
+-\kappa^{-1}\log \Big[ 1 - \frac{\kappa(x - \xi)}{\alpha} \Big], & \kappa \neq 0,\\ 
+\frac{(x - \xi)}{\alpha}, & \kappa = 0.
+\end{cases}
+\]
+
+where:
+- \( \xi \): location parameter
+- \( \alpha > 0 \): scale parameter
+- \( \kappa \): shape parameter, affecting the range of \( x \).
+
+This setup provides a flexible base for using RMarkdown to demonstrate code, visualizations, and interactivity.
