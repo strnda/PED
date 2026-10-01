@@ -5,8 +5,8 @@
 
 Collection of scripts and data for the **PED** class
 
-**Valid (2026-04-08)
-[Datacamp](https://www.datacamp.com/groups/shared_links/6b75b4c8cc0f74774363b054e303ecaa820837a3404c15d5eef8b338034640ac)
+**Valid (2026-10-01)
+[Datacamp](https://www.datacamp.com/groups/shared_links/56aa412c9a4964606d19321a92bae3736006b5471ae3792239bcb0ef86124a98)
 invite link**
 
 ## How to get the content of tis repo to your local machine
