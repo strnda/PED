@@ -105,3 +105,4 @@ dta_prec <- do.call(what = rbind,
                     args = dta_prec[!is.na(x = dta_prec)])
 
 
+### zmena 1
