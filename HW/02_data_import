@@ -1,0 +1,157 @@
+## file link -> https://opendata.chmi.cz/air_quality/historical/precipitation/
+
+## find the file url & dl the file
+
+# Opens help for scan function
+?scan
+
+# Opens help for readLines function
+?readLines
+
+# Opens help for download.file function
+?download.file
+
+# Stores the webpage URL containing target precipitation data
+url <- "https://opendata.chmi.cz/air_quality/historical/precipitation/"
+
+# Stores destination folder path on the local drive
+pth <- "C:/Users/strnadf/Downloads/"
+
+# Tries reading the webpage using scan (fails because it expects numeric values)
+test_1 <- scan(file = url)
+
+# Reads the webpage as a list of character tokens
+test_2 <- scan(file = url,
+               what = "list")
+
+# Reads the webpage line by line as character strings
+test_3 <- readLines(con = url)
+
+# Prints test_2 to console
+test_2
+
+# Prints test_3 to console
+test_3
+
+# Finds indices of elements containing "data"
+grep(pattern = "data",
+     x = test_2, 
+     ignore.case = TRUE)
+
+# Returns logical vector indicating elements containing "data"
+grepl(pattern = "data",
+      x = test_2, 
+      ignore.case = TRUE)
+
+# Returns indices where grepl evaluated to TRUE
+which(x = grepl(pattern = "data",
+                x = test_2, 
+                ignore.case = TRUE))
+
+# Extracts the filename from the HTML link by splitting at quotes and selecting 2nd element
+fl_nm <- strsplit(x = test_2[grep(pattern = "data",
+                                  x = test_2, 
+                                  ignore.case = TRUE)],
+                  split = '\"')[[1]][2]
+
+# Downloads the zip file from the constructed URL to the local destination folder
+download.file(url = paste0(url, fl_nm),
+              destfile = paste0(pth,
+                                fl_nm))
+
+# Checks if the downloaded file exists locally
+file.exists(paste0(pth,
+                   fl_nm))
+
+# Returns size of the downloaded file in bytes
+file.size(paste0(pth,
+                 fl_nm))
+
+# Returns metadata about the downloaded file
+file.info(paste0(pth,
+                 fl_nm))
+
+# Creates a new folder named "data" inside destination folder
+dir.create(path = paste0(pth,
+                         "data"))
+
+# Unzips the main archive into the newly created "data" folder
+unzip(zipfile = paste0(pth,
+                       fl_nm),
+      exdir = paste0(pth,
+                     "data"))
+
+# Lists all files inside the "data" directory recursively w full paths
+fls <- list.files(path = paste0(pth,
+                                "data"), 
+                  recursive = TRUE,
+                  full.names = TRUE)
+
+# Filters list to keep only nested .zip files
+fls_zip <- fls[grep(pattern = ".zip",
+                    x = fls,
+                    ignore.case = TRUE)]
+
+## task <- extract the TS and import the data in form of a one big dataframe.
+
+# Opens help for read.table function
+?read.table
+
+# Opens help for lapply function
+?lapply
+
+# Opens help for control flow constructs
+?Control 
+
+# Loops over all zip files to extract, read, and merge station tables
+dta_prec <- lapply(
+  X = fls_zip, 
+  FUN = function(x) {
+    
+    # x <- fls_zip[20]
+    
+    # Evaluates code block safely, catching any runtime errors
+    e <- try(expr = {
+      
+      # Gets the path to the current session's temporary folder
+      tmp <- tempdir()
+      
+      # Unzips individual station archive into temp folder
+      unzip(zipfile = x,
+            exdir = tmp)
+      
+      # Lists all files extracted inside temp folder
+      aux_fls <- list.files(path = tmp, 
+                            full.names = TRUE)
+      
+      # Reads measurement CSV file containing "data" in name
+      dta <- read.csv(file = aux_fls[grep(pattern = "data",
+                                          x = aux_fls)])
+      
+      # Reads station metadata CSV file containing "registr" in name
+      nfo <- read.csv(file = aux_fls[grep(pattern = "registr",
+                                          x = aux_fls)])
+      
+      # Combines measurements and metadata columns side by side
+      out <- cbind(dta, nfo)
+    }, 
+    silent = TRUE)
+    
+    # Assigns NA if an error occurred during extraction or reading
+    if (inherits(x = e,
+                 what = "try-error")) {
+      
+      out <- NA
+    } 
+    
+    # Returns the combined dataframe or NA
+    out
+  }
+)
+
+# Combines non-NA list elements into a single dataframe row by row
+dta_prec <- do.call(what = rbind,
+                    args = dta_prec[!is.na(x = dta_prec)])
+
+
+### zmena 1

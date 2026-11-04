@@ -1,0 +1,186 @@
+
+# Creates numeric object of 12
+a <- 12
+
+# Shows class of a (numeric)
+class(x = a)
+
+# Shows class of a (character)
+class(x = "a")
+
+# Shows class of today's date (Date)
+class(x = Sys.Date())
+
+# Gets today's date
+Sys.Date()
+
+## ?fun, or press f1 (gets help for a function)
+
+# Lists methods for objects of class "Date"
+methods(class = "Date")
+
+# Lists methods for generic function "plot"
+methods(generic.function = "plot")
+
+# Creates a numeric vector w 5 elements
+b <- c(1, 2, 5, 12, pi)
+
+# Selects the 3rd element of b
+b[3]
+
+# Shows class of b (numeric)
+class(x = b)
+
+# Creates an integer vector w 3 elements (L stands for integer)
+i <- c(1L,5L, 88L)
+
+# Shows class of i (integer)
+class(x = i)
+
+# Combines integer vector i and 1st element of b
+x <- c(i, b[1])
+
+# Shows class of x (numeric, due to coercion by numeric element b[1])
+class(x = x)
+
+# Combines i, b[1] and character "pi"
+y <- c(i, b[1], "pi")
+
+# Shows class of y (character, due to coercion by character element "pi")
+class(x = y)
+
+# Creates an empty factor
+factor()
+
+# Creates a vector of 10e7 random letters
+a <- sample(x = letters, 
+            size = 10e7, 
+            replace = TRUE)
+
+# Shows memory used by a
+object.size(x = a)
+
+# Converts a to a factor
+b <- as.factor(x = a)
+
+# Shows memory used by b (requires less memory than character vector)
+object.size(x = b)
+
+# Previews the first 6 elements of a
+head(x = a)
+
+# Previews the first 6 elements of b
+head(x = b)
+
+# Builds a matrix w 25 random normal values, 5 columns (5x5)
+m <- matrix(data = rnorm(n = 25), ncol = 5)
+
+# Selects elements from rows 1 and 3, column 2
+m[c(1, 3), 2]
+
+## array -> [, , 3]
+## data.frame | list
+
+# Creates an empty list
+x <- list()
+
+# Creates a dataframe w 50 consecutive dates and 50 random normal values
+df <- data.frame(date = seq.Date(from = Sys.Date(),
+                                 by = "day", 
+                                 length.out = 50),
+                 val = rnorm(n = 50))
+
+# Prints the dataframe
+df
+
+# Shows class of df (data.frame)
+class(x = df)
+
+# Shows the structure of df
+str(object = df)
+
+# Plots the dataframe as a line graph (type = "l")
+plot(x = df, type = "l")
+
+# Formats the data in row 5, col 1 as a 4-digit year (e.g., "2026")
+format(x = df[5, 1], format = "%Y")
+
+# Formats the data as an abbreviated weekday name (e.g., "Mon")
+format(x = df[5, 1], format = "%a")
+
+# Formats the data as a full weekday name (e.g., "Monday")
+format(x = df[5, 1], format = "%A")
+
+# Formats the data as a full month name (e.g., "January")
+format(x = df[5, 1], format = "%B")
+
+# Formats the data as an abbreviated month name (e.g., "Jan")
+format(x = df[5, 1], format = "%b")
+
+## create a fun: select wednesdays from df,
+##               calc desc stat for the selected values
+
+# Defines a function to calculate descriptive stats for a specific day or all days
+fun <- function(x, day = "Wed") {
+  
+  ## error handling with try|catch|stop
+  
+  # Stops execution if x is not a data.frame
+  if (!is.data.frame(x)) stop()
+  
+  # Attempts to run the code block, catching any errors
+  tryCatch({
+  
+  # Checks if stats should be calculated for all days
+  if (day == "All") {
+    
+    # Splits the 'val' column by the abbreviated weekday of the 'date' column
+    aux <- split(x = x$val,
+                 f = format(x = x$date,
+                            format = "%a"))
+    
+    # Applies a function to calculate stats for each weekday group
+    out <- lapply(X = aux, 
+                  FUN = function(val) {
+                    
+                    # Returns a named vector w count, mean, sd, and IQR
+                    return(c("number of values" = length(x = val),
+                             "mean" = mean(x = val, na.rm = TRUE),
+                             "sd" = sd(x = val, na.rm = TRUE),
+                             "iqr" = IQR(x = val, na.rm = TRUE)))
+                  })
+    
+    # Combines the list of results into a single matrix row by row
+    out <- do.call(what = rbind, 
+                   args = out)
+  } else {
+    
+    # Filters 'val' where the weekday matches the selected day
+    val <- x[format(x = x$date,
+                    format = "%a") %in% day, "val"]
+    
+    # Calculates stats only for the filtered values
+    out <- c("number of values" = length(x = val),
+             "mean" = mean(x = val, na.rm = TRUE),
+             "sd" = sd(x = val, na.rm = TRUE),
+             "iqr" = IQR(x = val, na.rm = TRUE))
+  }
+  
+  # Returns the calculated statistics
+  out
+  
+  }, error = function(e){
+    
+    # Stops execution silently if an error occurs in the block above
+    stop()
+  })
+}
+
+# Calls the function w the default day ("Wed")
+fun(x = df)
+
+# Calls the function for Monday ("Mon")
+fun(x = df, day = "Mon")
+
+# Calls the function for all days ("All")
+fun(x = df, day = "All")
