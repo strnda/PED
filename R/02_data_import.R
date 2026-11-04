@@ -1,5 +1,5 @@
 # ==============================================================================
-# R DATA ACQUISITION & ETL: WEB SCRAPING, ARCHIVE HANDLING & BATCH PROCESSING
+# 2. R DATA ACQUISITION & WEB SCRAPING
 # ==============================================================================
 # Objective:
 #   1. Inspect an open data HTTP directory index (CHMI precipitation data).
@@ -196,3 +196,4 @@ dta_prec <- lapply(
 #    arguments to rbind(), stacking them vertically into one master data frame.
 dta_prec <- do.call(what = rbind, 
                     args = dta_prec[!is.na(x = dta_prec)])
+dta_prec
